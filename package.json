@@ -1,0 +1,24 @@
+{
+  "name": "TootNowPlaying",
+  "version": "0.0.1",
+  "description": "iTunesやSpotifyで再生している音楽をmastodonで共有",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "theoria",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.8.4"
+  },
+  "dependencies": {
+    "base-64": "^0.1.0",
+    "dotenv": "^5.0.1",
+    "electron-json-storage": "^4.0.2",
+    "jquery": "^3.3.1",
+    "menubar": "^5.2.3",
+    "playback": "^0.2.0",
+    "request": "^2.85.0",
+    "spotify-web-api-node": "^3.0.0"
+  }
+}

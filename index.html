@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>#nowplaying for mastodon</title>
+    <link href="css/milligram.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="instance" class="hide">
+      <h4>インスタンスのURIを入力してください</h4>
+      <p>例: mstdn.jp</p>
+      <input type="text" id="instance-uri"><button type="button" id="instsub">Submit</button>
+    </div>
+
+    <div id="main">
+      <h3>#nowplaying for mastodon</h3>
+      <p id="nowplaying"></p>
+      <div>
+        <button id="toot">Toot!</button>
+      </div>
+      <div>
+        <button id="sync">Sync<small>(iTunes)</small></button>
+        <button id="spotify">Sync<small>(Spotify)</small></button>
+      </div>
+    </div>
+
+    <div id="code" class="hide">
+      <h4>コードを入力してください</h4>
+      <input type="text" id="auth-code"><button type="button" id="codesub">Submit</button>
+    </div>
+    <script type="text/javascript">
+      window.$ = window.jQuery = require('jquery')
+    </script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

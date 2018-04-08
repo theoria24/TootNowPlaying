@@ -1,0 +1,12 @@
+#nowplaying {
+  font-size: 120%;
+}
+small {
+  font-size: 75%;
+}
+.hide {
+  display: none;
+}
+#code {
+  margin-top: 10px;
+}
