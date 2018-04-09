@@ -2,7 +2,7 @@
 iTunesやSpotifyで再生している音楽をmastodonで共有
 
 ## 動作イメージ
-<iframe width="560" height="315" src="https://www.youtube.com/embed/2dkjM8LNft8?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+[![TootNowPlaying](http://img.youtube.com/vi/2dkjM8LNft8/0.jpg)](http://www.youtube.com/watch?v=2dkjM8LNft8)
 
 ## 使い方
 SpotifyのClient IDとClient Secretを入手し、`.env`というファイルに以下のような形式で記入してください。
