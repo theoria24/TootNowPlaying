@@ -69,6 +69,5 @@ ipcMain.on('spotify-refresh', (event, arg) => {
   request(options, function (error, response, body) {
     console.log(body)
     event.sender.send('spotify-access_token', body.access_token)
-    event.sender.send('spotify-refresh_token', body.refresh_token)
   })
 })
