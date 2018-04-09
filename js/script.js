@@ -1,10 +1,10 @@
 const {ipcRenderer, shell} = require('electron')
-const playback = require('playback');
-const storage = require('electron-json-storage');
-const base64 = require('base-64');
+const playback = require('playback')
+const storage = require('electron-json-storage')
+const base64 = require('base-64')
 
 storage.get('config', function (error, data) {
-    if (error) throw error;
+    if (error) throw error
     if (Object.keys(data).length === 0) {
       instance = null
       spotify_token = null
@@ -36,7 +36,7 @@ $(document).ready(function(){
     instance = $('#instance-uri').val()
     $("#instance").addClass("hide")
     $("#main").removeClass("hide")
-    storage.set('config', {instance: $('#instance-uri').val(), spotify_token: spotify_token, spotify_refresh: spotify_refresh}, function (error) {
+    storage.set('config', {instance: instance, spotify_token: spotify_token, spotify_refresh: spotify_refresh}, function (error) {
       if (error) throw error
     })
   })
@@ -84,5 +84,15 @@ $(document).ready(function(){
   $('#codesub').on('click', function() {
     ipcRenderer.send('spotify-code', $('#auth-code').val())
     $("#code").addClass("hide")
+  })
+  $('#change-instance').on('click', function() {
+    $("#instance").removeClass("hide")
+  })
+  $('#destroy-token').on('click', function() {
+    spotify_token = null
+    spotify_refresh = null
+    storage.set('config', {instance: instance, spotify_token: spotify_token, spotify_refresh: spotify_refresh}, function (error) {
+      if (error) throw error
+    })
   })
 })

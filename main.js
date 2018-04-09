@@ -17,7 +17,7 @@ var headers = {
   'Authorization':`Basic ${enc}`
 }
 
-const mb = menubar({height:250})
+const mb = menubar()
 mb.on('ready', function ready () {
   console.log('open window')
 })

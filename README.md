@@ -19,6 +19,7 @@ electron .
 `electron-json-storage`でSpotifyのアクセストークンやインスタンスのURIを保存しているので、何かおかしくなったら` C:\Users\<ユーザー名>\AppData\Roaming\TootNowPlaying`とか`/Users/<ユーザー名>/Library/Application Support/TootNowPlaying`とかにあるファイルを消してください。
 
 ## TODO
-- [ ] インスタンスの切り替え
-- [ ] Spotifyからログアウト
+- [x] インスタンスの切り替え
+- [x] Spotifyからログアウト
 - [ ] コードをいい感じにする
+- [ ] 配布のためにSpotifyのクライアントキー等を秘匿する？
