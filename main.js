@@ -17,6 +17,24 @@ var headers = {
   'Authorization':`Basic ${enc}`
 }
 
+function spotifysync(event, token) {
+  spotify.setAccessToken(token)
+  spotify.getMyCurrentPlayingTrack().then(function(data) {
+    var artist = ""
+    for(let i = 0; i < data.body.item.artists.length; i++) {
+      if (i > 0) {
+        var artist = artist + ", "
+      }
+      var artist = artist + data.body.item.artists[i].name
+    }
+    var nowplaying = `${data.body.item.name} - ${artist} （${data.body.item.album.name}） ${data.body.item.external_urls.spotify}`
+    event.sender.send('spotify-reply', nowplaying)
+  }, function(err) {
+    console.log('Something went wrong!', err)
+    event.sender.send('spotify-refresh', err)
+  })
+}
+
 const mb = menubar()
 mb.on('ready', function ready () {
   console.log('open window')
@@ -27,21 +45,7 @@ ipcMain.on('spotify', (event, arg) => {
   if (arg == 'auth') {
     event.sender.send('spotify-auth', "https://accounts.spotify.com/authorize/?client_id=" + process.env.SPOTIFY_CLIENT_ID + "&response_type=code&redirect_uri=https%3A%2F%2Ftheoria24.github.io%2Fcallback%2Fnowplaying-for-mastodon.html&scope=user-read-currently-playing")
   } else {
-    spotify.setAccessToken(arg)
-    spotify.getMyCurrentPlayingTrack().then(function(data) {
-      var artist = ""
-      for(let i = 0; i < data.body.item.artists.length; i++) {
-        if (i > 0) {
-          var artist = artist + ", "
-        }
-        var artist = artist + data.body.item.artists[i].name
-      }
-      var nowplaying = `${data.body.item.name} - ${artist} （${data.body.item.album.name}） ${data.body.item.external_urls.spotify}`
-      event.sender.send('spotify-reply', nowplaying)
-    }, function(err) {
-      console.log('Something went wrong!', err)
-      event.sender.send('spotify-refresh', err)
-    })
+    spotifysync(event, arg)
   }
 })
 ipcMain.on('spotify-code', (event, arg) => {
@@ -69,5 +73,6 @@ ipcMain.on('spotify-refresh', (event, arg) => {
   request(options, function (error, response, body) {
     console.log(body)
     event.sender.send('spotify-access_token', body.access_token)
+    spotifysync(event, body.access_token)
   })
 })
